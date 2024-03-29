@@ -14,18 +14,17 @@ import java.time.LocalDateTime;
 public class User {
 
     @Id
-    @Column(name = "username")
-    private String username;
+    @Column(name = "email")
+    private String email;
 
     @Column(name = " password")
     private String password;
 
+    @Column(name = "username")
+    private String username;
+
     @Column(name = "display_name")
     private String displayName;
-
-
-    @Column(name = "email")
-    private String email;
 
     @Column(name = "avatar_url")
     private String avatarUrl;
@@ -205,9 +204,9 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "username='" + username + '\'' +
+                "email='" + email + '\'' +
+                ", username='" + username + '\'' +
                 ", displayName='" + displayName + '\'' +
-                ", email='" + email + '\'' +
                 ", role=" + role +
                 '}';
     }
