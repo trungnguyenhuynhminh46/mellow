@@ -12,20 +12,17 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "user")
 public class User {
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_generator")
-    @SequenceGenerator(name = "user_generator", sequenceName = "user_sequence", allocationSize = 1)
-    private Long id;
 
+    @Id
     @Column(name = "username")
     private String username;
+
+    @Column(name = " password")
+    private String password;
 
     @Column(name = "display_name")
     private String displayName;
 
-    @Column(name = " password")
-    private String password;
 
     @Column(name = "email")
     private String email;
@@ -77,7 +74,6 @@ public class User {
     }
 
     public User(Long id, String username, String displayName, String password, String email, String avatarUrl, Role role, String description, DisplayMode displayMode, boolean isActive, String[] watchUpdateBoards, String[] watchUpdateColumns, String[] watchUpdateCards, LocalDateTime createdAt, LocalDateTime updatedAt) {
-        this.id = id;
         this.username = username;
         this.displayName = displayName;
         this.password = password;
@@ -92,14 +88,6 @@ public class User {
         this.watchUpdateCards = watchUpdateCards;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getUsername() {
@@ -217,10 +205,10 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
+                "username='" + username + '\'' +
                 ", displayName='" + displayName + '\'' +
                 ", email='" + email + '\'' +
+                ", role=" + role +
                 '}';
     }
 
@@ -228,7 +216,7 @@ public class User {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((username == null) ? 0 : username.hashCode());
         return result;
     }
 
@@ -241,9 +229,9 @@ public class User {
         if (getClass() != obj.getClass())
             return false;
         User other = (User) obj;
-        if (id == null) {
-            return other.id == null;
+        if (username == null) {
+            return other.username == null;
         }
-        return id.equals(other.id);
+        return username.equals(other.username);
     }
 }
