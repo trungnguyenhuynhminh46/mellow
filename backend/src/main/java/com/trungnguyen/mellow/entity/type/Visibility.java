@@ -1,4 +1,4 @@
-package com.example.mellow.entity.type;
+package com.trungnguyen.mellow.entity.type;
 
 public enum Visibility {
     WORKSPACE, PRIVATE, PUBLIC

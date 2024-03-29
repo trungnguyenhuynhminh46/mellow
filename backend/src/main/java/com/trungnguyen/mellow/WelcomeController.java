@@ -1,4 +1,4 @@
-package com.example.mellow;
+package com.trungnguyen.mellow;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

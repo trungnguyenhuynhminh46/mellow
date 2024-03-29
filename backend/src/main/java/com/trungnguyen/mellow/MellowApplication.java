@@ -1,4 +1,4 @@
-package com.example.mellow;
+package com.trungnguyen.mellow;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

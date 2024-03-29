@@ -1,4 +1,4 @@
-package com.example.mellow;
+package com.trungnguyen.mellow;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

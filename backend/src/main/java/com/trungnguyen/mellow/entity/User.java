@@ -1,8 +1,8 @@
-package com.example.mellow.entity;
+package com.trungnguyen.mellow.entity;
 
-import com.example.mellow.entity.converter.StringArrayConverter;
-import com.example.mellow.entity.type.DisplayMode;
-import com.example.mellow.entity.type.Role;
+import com.trungnguyen.mellow.entity.converter.StringArrayConverter;
+import com.trungnguyen.mellow.entity.type.DisplayMode;
+import com.trungnguyen.mellow.entity.type.Role;
 import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;

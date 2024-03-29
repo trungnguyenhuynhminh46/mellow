@@ -1,4 +1,4 @@
-package com.example.mellow.entity.converter;
+package com.trungnguyen.mellow.entity.converter;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
