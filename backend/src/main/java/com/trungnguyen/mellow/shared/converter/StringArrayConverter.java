@@ -1,4 +1,4 @@
-package com.trungnguyen.mellow.entity.converter;
+package com.trungnguyen.mellow.shared.converter;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

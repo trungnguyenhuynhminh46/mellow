@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: mellow
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+        hibernate:
+            format_sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+  datasource:
+    url: jdbc:mysql://localhost:3306/mellow
+    username: mellow
+    password: mellow
+    driver-class-name: com.mysql.cj.jdbc.Driver
+server:
+  port: 8081
+application:
+  security:
+    jwt:
+      secret-key: m6ruGB2kPvJkCrAtOLUufShEgiXBxSFRamoV6htXw7A=
+      expiration: 86400000 # a day
+      refresh-token:
+        expiration: 604800000 # 7 days
