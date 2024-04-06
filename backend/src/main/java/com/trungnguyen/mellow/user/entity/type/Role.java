@@ -1,4 +1,4 @@
-package com.trungnguyen.mellow.shared.entity.type;
+package com.trungnguyen.mellow.user.entity.type;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.trungnguyen.mellow.shared.entity.type.Permission.*;
+import static com.trungnguyen.mellow.user.entity.type.Permission.*;
 
 
 @RequiredArgsConstructor

@@ -1,6 +1,6 @@
 package com.trungnguyen.mellow.shared.config;
 
-import com.trungnguyen.mellow.shared.repository.UserRepository;
+import com.trungnguyen.mellow.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

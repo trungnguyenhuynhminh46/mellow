@@ -1,4 +1,4 @@
-package com.trungnguyen.mellow.shared.entity.type;
+package com.trungnguyen.mellow.user.entity.type;
 
 public enum BoardRole {
     OWNER,

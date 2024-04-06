@@ -1,8 +1,8 @@
-package com.trungnguyen.mellow.shared.entity;
+package com.trungnguyen.mellow.user.entity;
 
-import com.trungnguyen.mellow.shared.entity.type.DisplayMode;
+import com.trungnguyen.mellow.user.entity.type.DisplayMode;
 import com.trungnguyen.mellow.shared.converter.StringArrayConverter;
-import com.trungnguyen.mellow.shared.entity.type.Role;
+import com.trungnguyen.mellow.user.entity.type.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -10,7 +10,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -47,23 +46,23 @@ public class User implements UserDetails {
     private Role role;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "display_mode", length = 32, columnDefinition = "varchar(32) default 'SYSTEM'")
+    @Column(name = "display_mode")
     private DisplayMode displayMode;
 
-    @Column(name = "is_active", columnDefinition = "boolean default true")
+    @Column(name = "is_active")
     private boolean isActive;
 
     @Convert(converter = StringArrayConverter.class)
-    @Column(name = "watch_update_boards", length = 1024, columnDefinition = "varchar(1024) default ''")
-    private String[] watchUpdateBoards = new String[]{};
+    @Column(name = "watch_update_boards")
+    private String[] watchUpdateBoards;
 
     @Convert(converter = StringArrayConverter.class)
-    @Column(name = "watch_update_columns", length = 1024, columnDefinition = "varchar(1024) default ''")
-    private String[] watchUpdateColumns = new String[]{};;
+    @Column(name = "watch_update_columns")
+    private String[] watchUpdateColumns;
 
     @Convert(converter = StringArrayConverter.class)
-    @Column(name = "watch_update_cards", length = 1024, columnDefinition = "varchar(1024) default ''")
-    private String[] watchUpdateCards = new String[]{};;
+    @Column(name = "watch_update_cards")
+    private String[] watchUpdateCards;
 
 //    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 //    private Set<Membership> memberships = new HashSet<>();
@@ -105,11 +104,6 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
     }
 
     @Override
