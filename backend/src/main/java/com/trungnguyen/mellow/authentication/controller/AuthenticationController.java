@@ -1,5 +1,8 @@
 package com.trungnguyen.mellow.authentication.controller;
 
+import com.trungnguyen.mellow.authentication.dto.AuthenticationRequest;
+import com.trungnguyen.mellow.authentication.dto.AuthenticationResponse;
+import com.trungnguyen.mellow.authentication.dto.RegisterRequest;
 import com.trungnguyen.mellow.authentication.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

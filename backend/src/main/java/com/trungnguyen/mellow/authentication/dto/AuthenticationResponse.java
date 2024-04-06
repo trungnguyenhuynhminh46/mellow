@@ -1,4 +1,4 @@
-package com.trungnguyen.mellow.authentication.controller;
+package com.trungnguyen.mellow.authentication.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

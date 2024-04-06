@@ -1,8 +1,8 @@
 package com.trungnguyen.mellow.authentication.service;
 
-import com.trungnguyen.mellow.authentication.controller.AuthenticationRequest;
-import com.trungnguyen.mellow.authentication.controller.AuthenticationResponse;
-import com.trungnguyen.mellow.authentication.controller.RegisterRequest;
+import com.trungnguyen.mellow.authentication.dto.AuthenticationRequest;
+import com.trungnguyen.mellow.authentication.dto.AuthenticationResponse;
+import com.trungnguyen.mellow.authentication.dto.RegisterRequest;
 import com.trungnguyen.mellow.user.entity.type.DisplayMode;
 import com.trungnguyen.mellow.user.entity.type.Role;
 import com.trungnguyen.mellow.user.repository.UserRepository;
