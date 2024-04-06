@@ -1,7 +1,6 @@
 package com.trungnguyen.mellow.authentication.controller;
 
 import com.trungnguyen.mellow.authentication.service.AuthenticationService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

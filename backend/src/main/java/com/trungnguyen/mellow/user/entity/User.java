@@ -1,5 +1,6 @@
 package com.trungnguyen.mellow.user.entity;
 
+import com.trungnguyen.mellow.shared.auditing.ApplicationAuditAware;
 import com.trungnguyen.mellow.user.entity.type.DisplayMode;
 import com.trungnguyen.mellow.shared.converter.StringArrayConverter;
 import com.trungnguyen.mellow.user.entity.type.Role;
@@ -23,6 +24,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
+@EntityListeners(ApplicationAuditAware.class)
 public class User implements UserDetails {
 
     @Id
