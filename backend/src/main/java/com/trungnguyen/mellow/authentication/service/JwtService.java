@@ -18,6 +18,10 @@ import java.util.function.Function;
 public class JwtService {
     @Value("${application.security.jwt.secret-key}")
     private String SECRET_KEY;
+    @Value("${application.security.jwt.access-token.expiration}")
+    private Long ACCESS_TOKEN_EXPIRATION;
+    @Value("${application.security.jwt.refresh-token.expiration}")
+    private Long REFRESH_TOKEN_EXPIRATION;
 
     private Claims extractAllClaims(String token) {
         return Jwts
@@ -41,20 +45,25 @@ public class JwtService {
         return extractClaim(token, Claims::getExpiration);
     }
 
-    public String generateToken(UserDetails userDetails) {
-        return generateToken(new HashMap<>(), userDetails);
+    public String generateAccessToken(UserDetails userDetails) {
+        return buildToken(new HashMap<>(), userDetails, ACCESS_TOKEN_EXPIRATION);
     }
 
-    public String generateToken(
+    public String generateRefreshToken(UserDetails userDetails) {
+        return buildToken(new HashMap<>(), userDetails, REFRESH_TOKEN_EXPIRATION);
+    }
+
+    public String buildToken(
             Map<String, Object> extraClaims,
-            UserDetails userDetails
+            UserDetails userDetails,
+            Long expiration
     ) {
         return Jwts
                 .builder()
                 .claims(extraClaims)
                 .subject(userDetails.getUsername())
                 .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
+                .expiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(getSignInKey())
                 .compact();
     }

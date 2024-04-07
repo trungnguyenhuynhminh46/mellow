@@ -3,6 +3,9 @@ package com.trungnguyen.mellow.authentication.service;
 import com.trungnguyen.mellow.authentication.dto.AuthenticationRequest;
 import com.trungnguyen.mellow.authentication.dto.AuthenticationResponse;
 import com.trungnguyen.mellow.authentication.dto.RegisterRequest;
+import com.trungnguyen.mellow.authentication.entity.RefreshToken;
+import com.trungnguyen.mellow.authentication.entity.type.TokenType;
+import com.trungnguyen.mellow.authentication.repository.RefreshTokenRepository;
 import com.trungnguyen.mellow.user.entity.type.DisplayMode;
 import com.trungnguyen.mellow.user.entity.type.Role;
 import com.trungnguyen.mellow.user.repository.UserRepository;
@@ -18,10 +21,25 @@ import java.time.LocalDateTime;
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
-    private final UserRepository repository;
+    private final UserRepository userRepository;
+    private final RefreshTokenRepository refreshTokenRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+    private void saveRefreshToken(String refreshToken, User user) {
+         var refreshTokenEntity = RefreshToken.builder()
+                 .refreshToken(refreshToken)
+                 .user(user)
+                 .type(TokenType.BEARER)
+                 .build();
+         refreshTokenRepository.save(refreshTokenEntity);
+    }
+    private void revokeAllRefreshTokensOfUser(User user) {
+        refreshTokenRepository.deleteByUserEmail(user.getEmail());
+    }
+    private void revokeRefreshToken(String refreshToken) {
+        refreshTokenRepository.deleteByRefreshToken(refreshToken);
+    }
     public AuthenticationResponse register(RegisterRequest request) {
         var user = User.builder()
                 .email(request.getEmail())
@@ -38,20 +56,30 @@ public class AuthenticationService {
                 .createdAt(LocalDateTime.now())
                 .updatedAt(LocalDateTime.now())
                 .build();
-        repository.save(user);
-        var jwtToken = jwtService.generateToken(user);
-        return AuthenticationResponse.builder().token(jwtToken).build();
+        userRepository.save(user);
+        String accessToken = jwtService.generateAccessToken(user);
+        String refreshToken = jwtService.generateRefreshToken(user);
+        saveRefreshToken(refreshToken, user);
+        return AuthenticationResponse.builder()
+                .accessToken(accessToken)
+                .refreshToken(refreshToken)
+                .build();
     }
 
-    public AuthenticationResponse authenticate(AuthenticationRequest request) {
+    public AuthenticationResponse login(AuthenticationRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
                         request.getPassword()
                 )
         );
-        var user = repository.findByEmail(request.getEmail()).orElseThrow();
-        var jwtToken = jwtService.generateToken(user);
-        return AuthenticationResponse.builder().token(jwtToken).build();
+        var user = userRepository.findByEmail(request.getEmail()).orElseThrow();
+        String accessToken = jwtService.generateAccessToken(user);
+        String refreshToken = jwtService.generateRefreshToken(user);
+        saveRefreshToken(refreshToken, user);
+        return AuthenticationResponse.builder()
+                .accessToken(accessToken)
+                .refreshToken(refreshToken)
+                .build();
     }
 }
