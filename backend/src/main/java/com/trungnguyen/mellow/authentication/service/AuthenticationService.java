@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -131,12 +132,16 @@ public class AuthenticationService {
         return storedRefreshToken.get().getUser();
     }
 
-    private String rotateRefreshToken(String refreshToken) {
+    private Map<String, String> rotateRefreshToken(String refreshToken) {
         User user = detectReuseRefreshToken(refreshToken);
         String newRefreshToken =  jwtService.generateRefreshToken(user);
+        String newAccessToken = jwtService.generateAccessToken(user);
         saveRefreshToken(newRefreshToken, user);
 
-        return newRefreshToken;
+        return Map.of(
+                "accessToken", newAccessToken,
+                "refreshToken", newRefreshToken
+        );
     }
 
     public AuthenticationResponse refreshToken(
@@ -152,10 +157,10 @@ public class AuthenticationService {
         accessToken = authHeader.substring(7);
         refreshToken = refreshTokenRequest.getRefreshToken();
         validateTokens(accessToken, refreshToken);
-        String newRefreshToken = rotateRefreshToken(refreshToken);
+        Map<String, String> newTokens = rotateRefreshToken(refreshToken);
         return AuthenticationResponse.builder()
-                .accessToken(accessToken)
-                .refreshToken(newRefreshToken)
+                .accessToken(newTokens.get("accessToken"))
+                .refreshToken(newTokens.get("refreshToken"))
                 .build();
     }
 }
