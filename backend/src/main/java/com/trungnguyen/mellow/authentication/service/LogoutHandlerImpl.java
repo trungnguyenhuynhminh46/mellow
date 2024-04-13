@@ -19,7 +19,6 @@ public class LogoutHandlerImpl implements LogoutHandler {
     private final RefreshTokenRepository refreshTokenRepository;
     private final JwtService jwtService;
 
-    @Transactional
     @Override
     public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
         final String authHeader = request.getHeader("Authorization");
