@@ -94,7 +94,7 @@ public class AuthenticationService {
         List<RefreshToken> storedRefreshTokens = refreshTokenRepository.findByUserEmail(email);
 
         int numberOfLoggedAccounts = storedRefreshTokens.size();
-        if(numberOfLoggedAccounts > 5) {
+        if (numberOfLoggedAccounts >= 5) {
             throw new ForbiddenException("You can only login on 5 devices at the same time. Please logout on other devices to continue.");
         }
         var user = userRepository.findByEmail(email).orElseThrow();
