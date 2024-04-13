@@ -2,8 +2,11 @@ package com.trungnguyen.mellow.authentication.controller;
 
 import com.trungnguyen.mellow.authentication.dto.AuthenticationRequest;
 import com.trungnguyen.mellow.authentication.dto.AuthenticationResponse;
+import com.trungnguyen.mellow.authentication.dto.RefreshTokenRequest;
 import com.trungnguyen.mellow.authentication.dto.RegisterRequest;
 import com.trungnguyen.mellow.authentication.service.AuthenticationService;
+import com.trungnguyen.mellow.shared.exception.UnauthorizedException;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,9 +32,12 @@ public class AuthenticationController {
         return ResponseEntity.ok(service.login(request));
     }
 
-    @PostMapping("/refresh")
-    public ResponseEntity<String> refresh() {
-        return ResponseEntity.ok("anything");
+    @PostMapping("/refresh-token")
+    public ResponseEntity<AuthenticationResponse> refreshToken(
+            HttpServletRequest request,
+            @RequestBody RefreshTokenRequest refreshTokenRequest
+    ) throws UnauthorizedException {
+        return ResponseEntity.ok(service.refreshToken(request, refreshTokenRequest));
     }
 
 }
