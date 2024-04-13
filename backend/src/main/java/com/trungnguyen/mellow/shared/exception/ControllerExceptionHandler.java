@@ -30,6 +30,12 @@ public class ControllerExceptionHandler {
         return buildErrorMessage(HttpStatus.UNAUTHORIZED, ex, request);
     }
 
+    @ExceptionHandler(ForbiddenException.class)
+    @ResponseStatus(value = HttpStatus.FORBIDDEN)
+    public ErrorMessage forbiddenException(ForbiddenException ex, WebRequest request) {
+        return buildErrorMessage(HttpStatus.FORBIDDEN, ex, request);
+    }
+
     @ExceptionHandler(Exception.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorMessage globalExceptionHandler(Exception ex, WebRequest request) {

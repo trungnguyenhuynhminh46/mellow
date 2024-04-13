@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -52,8 +53,13 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse register(RegisterRequest request) {
-        var user = User.builder()
-                .email(request.getEmail())
+        final String email = request.getEmail();
+        Optional<User> existingUser = userRepository.findByEmail(email);
+        if (existingUser.isPresent()) {
+            throw new ForbiddenException("Email is already taken");
+        }
+        User user = User.builder()
+                .email(email)
                 .password(passwordEncoder.encode(request.getPassword()))
                 .displayName(request.getDisplayName())
                 .avatarUrl(request.getAvatarUrl())
@@ -78,13 +84,20 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse login(AuthenticationRequest request) {
+        final String email = request.getEmail();
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
+                        email,
                         request.getPassword()
                 )
         );
-        var user = userRepository.findByEmail(request.getEmail()).orElseThrow();
+        List<RefreshToken> storedRefreshTokens = refreshTokenRepository.findByUserEmail(email);
+
+        int numberOfLoggedAccounts = storedRefreshTokens.size();
+        if(numberOfLoggedAccounts > 5) {
+            throw new ForbiddenException("You can only login on 5 devices at the same time. Please logout on other devices to continue.");
+        }
+        var user = userRepository.findByEmail(email).orElseThrow();
         String accessToken = jwtService.generateAccessToken(user);
         String refreshToken = jwtService.generateRefreshToken(user);
         saveRefreshToken(refreshToken, user);
@@ -134,7 +147,7 @@ public class AuthenticationService {
 
     private Map<String, String> rotateRefreshToken(String refreshToken) {
         User user = detectReuseRefreshToken(refreshToken);
-        String newRefreshToken =  jwtService.generateRefreshToken(user);
+        String newRefreshToken = jwtService.generateRefreshToken(user);
         String newAccessToken = jwtService.generateAccessToken(user);
         saveRefreshToken(newRefreshToken, user);
 
