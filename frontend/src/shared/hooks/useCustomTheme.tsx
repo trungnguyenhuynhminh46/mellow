@@ -1,8 +1,22 @@
 import { createTheme, PaletteMode } from '@mui/material'
 import { amber, deepOrange, grey } from '@mui/material/colors'
+import React from 'react'
 
-export default function useCustomTheme(mode: PaletteMode | undefined) {
-  return createTheme({
+export default function useCustomTheme() {
+  const [mode, setMode] = React.useState<PaletteMode>((): PaletteMode => {
+    if (typeof window !== 'undefined') {
+      return (localStorage.getItem('mode') || 'light') as PaletteMode
+    }
+    return 'light'
+  })
+
+  const toggleThemeMode = () => {
+    const newMode = mode === 'light' ? 'dark' : 'light'
+    setMode(newMode)
+    localStorage.setItem('mode', newMode)
+  }
+
+  const modifiedTheme = createTheme({
     palette: {
       mode,
       ...(mode === 'light'
@@ -28,4 +42,9 @@ export default function useCustomTheme(mode: PaletteMode | undefined) {
         })
     }
   })
+  return {
+    theme: modifiedTheme,
+    mode,
+    toggleThemeMode
+  }
 }
