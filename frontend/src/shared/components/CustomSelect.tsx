@@ -3,17 +3,19 @@ import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@m
 type OptionType = string | number | readonly string[] | undefined;
 
 type Props<T> = {
+    id: string,
     inputLabel: string,
     options: { [label: string]: OptionType & T },
     selectedOption: OptionType & T,
     onChange: (event: SelectChangeEvent<OptionType & T>) => void
 }
-const CustomSelect = <T extends string>({ inputLabel, options, selectedOption, onChange }: Props<T>) => {
+const CustomSelect = <T extends string>({ id, inputLabel, options, selectedOption, onChange }: Props<T>) => {
+  const labelId = id + '-label'
   return <FormControl fullWidth>
-    <InputLabel id="demo-simple-select-label">{inputLabel}</InputLabel>
+    <InputLabel id={id}>{inputLabel}</InputLabel>
     <Select
-      labelId="demo-simple-select-label"
-      id="demo-simple-select"
+      labelId={labelId}
+      id={id}
       value={selectedOption}
       label={inputLabel}
       onChange={onChange}

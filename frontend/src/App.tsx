@@ -1,4 +1,4 @@
-import { FormControl, InputLabel, SelectChangeEvent, ThemeProvider } from '@mui/material'
+import { SelectChangeEvent, ThemeProvider } from '@mui/material'
 import useCustomTheme, { DisplayMode } from './shared/hooks/useCustomTheme.tsx'
 import CssBaseline from '@mui/material/CssBaseline'
 import CustomSelect from './shared/components/CustomSelect.tsx'
@@ -18,11 +18,8 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline/>
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Age</InputLabel>
-        <CustomSelect<DisplayMode> inputLabel={'Display'} options={options} selectedOption={displayMode}
-          onChange={handleChangeThemeMode}/>
-      </FormControl>
+      <CustomSelect<DisplayMode> id={'id-theme-mode'} inputLabel={'Display'} options={options} selectedOption={displayMode}
+        onChange={handleChangeThemeMode}/>
     </ThemeProvider>
   )
 }
