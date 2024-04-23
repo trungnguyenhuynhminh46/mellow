@@ -27,9 +27,10 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*", "./dist/*", ""],
-      "@apps/*": ["./src/applications/*"],
-      "@shared/*": ["./src/shared/*"],
       "@assets/*": ["./src/assets/*"],
+      "@pages/*": ["./src/applications/*"],
+      "@shared/*": ["./src/shared/*"],
+      "@components/*": ["./src/shared/components/*"],
     }
   },
   "include": ["src"],
