@@ -1,8 +1,14 @@
-import { createTheme, PaletteMode, useMediaQuery } from '@mui/material'
+import { createTheme, PaletteMode, Theme, useMediaQuery } from '@mui/material'
 import React from 'react'
 
 export type DisplayMode = 'light' | 'dark' | 'system';
 
+const customTheme = {
+  mellow: {
+    headerHeight: '48px',
+    boardDetailHeaderHeight: '56px'
+  }
+}
 export default function useCustomTheme() {
   const systemPrefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
   const [displayMode, setDisplayMode] = React.useState<DisplayMode>((): DisplayMode => {
@@ -38,9 +44,17 @@ export default function useCustomTheme() {
         : darkTheme)
     }
   })
+
+  const theme = {
+    ...customTheme,
+    ...modifiedTheme
+  }
+
   return {
-    theme: modifiedTheme,
+    theme,
     displayMode: displayMode,
     changeThemeMode
   }
 }
+
+export type CustomThemeType = typeof customTheme & Theme
