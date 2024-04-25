@@ -1,5 +1,4 @@
 import { createTheme, PaletteMode, useMediaQuery } from '@mui/material'
-import { amber, deepOrange, grey } from '@mui/material/colors'
 import React from 'react'
 
 export type DisplayMode = 'light' | 'dark' | 'system';
@@ -28,30 +27,15 @@ export default function useCustomTheme() {
     localStorage.setItem('mode', newDisplayMode)
   }
 
+  const lightTheme = {}
+  const darkTheme = {}
+
   const modifiedTheme = createTheme({
     palette: {
       mode,
       ...(mode === 'light'
-        ? {
-          primary: amber,
-          divider: amber[200],
-          text: {
-            primary: grey[900],
-            secondary: grey[800]
-          }
-        }
-        : {
-          primary: deepOrange,
-          divider: deepOrange[700],
-          background: {
-            default: deepOrange[900],
-            paper: deepOrange[900]
-          },
-          text: {
-            primary: '#fff',
-            secondary: grey[500]
-          }
-        })
+        ? lightTheme
+        : darkTheme)
     }
   })
   return {
