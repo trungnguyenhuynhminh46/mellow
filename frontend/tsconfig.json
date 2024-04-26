@@ -31,6 +31,7 @@
       "@pages/*": ["./src/pages/*"],
       "@shared/*": ["./src/shared/*"],
       "@components/*": ["./src/shared/components/*"],
+      "@utils": ["./src/shared/utils"],
     }
   },
   "include": ["src"],

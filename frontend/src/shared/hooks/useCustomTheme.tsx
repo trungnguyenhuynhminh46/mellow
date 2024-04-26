@@ -1,12 +1,31 @@
 import { createTheme, PaletteMode, Theme, useMediaQuery } from '@mui/material'
 import React from 'react'
+import { generateThemeColors, rgb, RGB } from '@shared/utils/colors.tsx'
 
 export type DisplayMode = 'light' | 'dark' | 'system';
 
-const customTheme = {
+export type ExtendedThemeType = {
+  mellow: {
+    headerHeight: string
+    boardDetailHeaderHeight: string
+    light: {
+        themeColors: RGB[]
+    }
+    dark: {
+        themeColors: RGB[]
+    }
+  }
+}
+const extendedTheme: ExtendedThemeType = {
   mellow: {
     headerHeight: '48px',
-    boardDetailHeaderHeight: '56px'
+    boardDetailHeaderHeight: '56px',
+    light: {
+      themeColors: []
+    },
+    dark: {
+      themeColors: []
+    }
   }
 }
 export default function useCustomTheme() {
@@ -33,6 +52,10 @@ export default function useCustomTheme() {
     localStorage.setItem('mode', newDisplayMode)
   }
 
+  const [themeLightColor, setThemeLightColor] = React.useState<RGB|string>(rgb(69, 171, 239))
+  extendedTheme.mellow.light.themeColors = generateThemeColors(themeLightColor)
+  extendedTheme.mellow.dark.themeColors = generateThemeColors(rgb(0, 0, 0))
+
   const lightTheme = {}
   const darkTheme = {}
 
@@ -46,15 +69,16 @@ export default function useCustomTheme() {
   })
 
   const theme = {
-    ...customTheme,
+    ...extendedTheme,
     ...modifiedTheme
   }
 
   return {
     theme,
-    displayMode: displayMode,
-    changeThemeMode
+    displayMode,
+    changeThemeMode,
+    setThemeLightColor
   }
 }
 
-export type CustomThemeType = typeof customTheme & Theme
+export type CustomThemeType = ExtendedThemeType & Theme
