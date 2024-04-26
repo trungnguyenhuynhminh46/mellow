@@ -1,14 +1,5 @@
-export type RGB = {
-  r: number;
-  g: number;
-  b: number;
-}
-export const rgbToString = (rgb: RGB): string => {
-  return `rgb(${rgb.r},${rgb.g},${rgb.b})`
-}
-export const rgb= (r: number, g: number, b: number): RGB => {
-  return { r, g, b }
-}
+import RGB from '@shared/classes/RGB.ts'
+
 export const generateImageElement = (imageUrl: string): HTMLImageElement => {
   const canvas = document.createElement('canvas')
   const ctx = canvas.getContext('2d')
@@ -24,12 +15,12 @@ export const generateImageElement = (imageUrl: string): HTMLImageElement => {
 export const generateAverageColor = (imageUrl: string): RGB => {
   const imgElement = generateImageElement(imageUrl)
   const blockSize = 5 // only visit every 5 pixels
-  const defaultRGB: RGB = { r: 0, g: 0, b: 0 } // for non-supporting envs
+  const defaultRGB: RGB = new RGB(0, 0, 0)
   const canvas = document.createElement('canvas')
   const context = canvas.getContext && canvas.getContext('2d')
   let data: ImageData | null
   let i = -4
-  const rgb: RGB = { r: 0, g: 0, b: 0 }
+  const rgb: RGB = new RGB(0, 0, 0)
   let count = 0
 
   if (!context) {
@@ -64,22 +55,14 @@ export const generateAverageColor = (imageUrl: string): RGB => {
 }
 
 export const generateColorByAlpha = (base: RGB, alpha: number): RGB => {
-  return {
-    r: Math.floor(base.r * alpha),
-    g: Math.floor(base.g * alpha),
-    b: Math.floor(base.b * alpha)
-  }
+  return new RGB(Math.floor(base.r * alpha), Math.floor(base.g * alpha), Math.floor(base.b * alpha))
 }
 
 export const generateDifferentShadeOfColor = (color: RGB, numberOfShades: number): RGB[] => {
-  const unitColor = {
-    r: Math.floor(color.r / 10),
-    g: Math.floor(color.g / 10),
-    b: Math.floor(color.b / 10)
-  }
-  const shades = []
+  const unitColor = new RGB(Math.floor(color.r / 10), Math.floor(color.g / 10), Math.floor(color.b / 10))
   const iStart = -Math.floor((numberOfShades-1)/2)
   const iEnd = Math.floor(numberOfShades/2)
+  const shades = []
   for (let i = iStart; i <= iEnd; i++) {
     const alpha = i + 10
     shades.push(generateColorByAlpha(unitColor, alpha))

@@ -1,6 +1,7 @@
 import { createTheme, PaletteMode, Theme, useMediaQuery } from '@mui/material'
 import React from 'react'
-import { generateThemeColors, rgb, RGB } from '@shared/utils/colors.tsx'
+import { generateThemeColors } from '@shared/utils/colors.tsx'
+import RGB from '@shared/classes/RGB.ts'
 
 export type DisplayMode = 'light' | 'dark' | 'system';
 
@@ -52,9 +53,9 @@ export default function useCustomTheme() {
     localStorage.setItem('mode', newDisplayMode)
   }
 
-  const [themeLightColor, setThemeLightColor] = React.useState<RGB|string>(rgb(69, 171, 239))
+  const [themeLightColor, setThemeLightColor] = React.useState<RGB|string>(new RGB(69, 171, 239))
   extendedTheme.mellow.light.themeColors = generateThemeColors(themeLightColor)
-  extendedTheme.mellow.dark.themeColors = generateThemeColors(rgb(0, 0, 0))
+  extendedTheme.mellow.dark.themeColors = generateThemeColors(new RGB(0, 0, 0))
 
   const lightTheme = {}
   const darkTheme = {}
