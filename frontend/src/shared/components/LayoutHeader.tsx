@@ -1,16 +1,15 @@
 import { Box, Button, useTheme } from '@mui/material'
 import { CustomThemeType } from '@shared/hooks/useCustomTheme.tsx'
 import DashboardIcon from '@mui/icons-material/Dashboard'
+import { getThemeColors } from '@shared/utils/theme.tsx'
 
 const LayoutHeader = () => {
   const theme = useTheme<CustomThemeType>()
-  const themeMode = theme.palette.mode
-  const lightThemeColors = theme.mellow.light.themeColors
-  const darkThemeColors = theme.mellow.dark.themeColors
+  const themeColors = getThemeColors(theme)
 
   return <Box sx={{
     height: theme.mellow.headerHeight,
-    background: themeMode === 'light' ? lightThemeColors[0].toString() : darkThemeColors[0].toString()
+    background: themeColors[0]
   }} >
     <Box sx={{
       display: 'flex',
