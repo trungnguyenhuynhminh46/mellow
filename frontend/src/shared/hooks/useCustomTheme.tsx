@@ -55,7 +55,7 @@ export default function useCustomTheme() {
 
   const [themeLightColor, setThemeLightColor] = React.useState<RGB|string>(new RGB(69, 171, 239))
   extendedTheme.mellow.light.themeColors = generateThemeColors(themeLightColor)
-  extendedTheme.mellow.dark.themeColors = generateThemeColors(new RGB(0, 0, 0))
+  extendedTheme.mellow.dark.themeColors = generateThemeColors(new RGB(44, 62, 80))
 
   const lightTheme = {}
   const darkTheme = {}
