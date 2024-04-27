@@ -16,21 +16,26 @@ const extendedTheme: ExtendedThemeType = {
     }
   }
 }
-export default function useCustomTheme() {
-  const systemPrefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
-  const [displayMode, setDisplayMode] = React.useState<DisplayMode>((): DisplayMode => {
-    if (typeof window !== 'undefined') {
-      return (localStorage.getItem('mode') || 'light') as DisplayMode
-    }
-    return 'light'
-  })
 
+const getDisplayMode = (): DisplayMode => {
+  if (typeof window !== 'undefined') {
+    return (localStorage.getItem('mode') || 'light') as DisplayMode
+  }
+  return 'light'
+}
+
+const getThemeMode = (displayMode: DisplayMode, systemPrefersDarkMode: boolean): PaletteMode => {
+  return displayMode === 'system' ? (systemPrefersDarkMode ? 'dark' : 'light') : displayMode
+}
+export default function useCustomTheme() {
+  const [themeLightColor, setThemeLightColor] = React.useState<RGB|string>(new RGB(69, 171, 239))
+  extendedTheme.mellow.light.themeColors = generateThemeColors(themeLightColor)
+  extendedTheme.mellow.dark.themeColors = generateThemeColors(new RGB(44, 62, 80))
+
+  const systemPrefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
+  const [displayMode, setDisplayMode] = React.useState<DisplayMode>(getDisplayMode)
   const [mode, setMode] = React.useState<PaletteMode>(():PaletteMode => {
-    if (typeof window !== 'undefined') {
-      const displayMode = localStorage.getItem('mode') as DisplayMode
-      return displayMode === 'system' ? (systemPrefersDarkMode ? 'dark' : 'light') : displayMode
-    }
-    return 'light'
+    return getThemeMode(displayMode, systemPrefersDarkMode)
   })
 
   const changeThemeMode = (newDisplayMode: DisplayMode) => {
@@ -39,10 +44,6 @@ export default function useCustomTheme() {
     setMode(newMode)
     localStorage.setItem('mode', newDisplayMode)
   }
-
-  const [themeLightColor, setThemeLightColor] = React.useState<RGB|string>(new RGB(69, 171, 239))
-  extendedTheme.mellow.light.themeColors = generateThemeColors(themeLightColor)
-  extendedTheme.mellow.dark.themeColors = generateThemeColors(new RGB(44, 62, 80))
 
   const lightTheme = {}
   const darkTheme = {}
