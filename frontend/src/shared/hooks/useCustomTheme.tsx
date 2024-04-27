@@ -6,8 +6,8 @@ import { DisplayMode, ExtendedThemeType } from '@shared/types/theme.ts'
 
 const extendedTheme: ExtendedThemeType = {
   mellow: {
-    headerHeight: '48px',
-    boardDetailHeaderHeight: '56px',
+    headerHeight: '52px',
+    boardDetailHeaderHeight: '60px',
     light: {
       themeColors: []
     },
@@ -29,8 +29,10 @@ const getThemeMode = (displayMode: DisplayMode, systemPrefersDarkMode: boolean):
 }
 export default function useCustomTheme() {
   const [themeLightColor, setThemeLightColor] = React.useState<RGB|string>(new RGB(69, 171, 239))
-  extendedTheme.mellow.light.themeColors = generateThemeColors(themeLightColor)
-  extendedTheme.mellow.dark.themeColors = generateThemeColors(new RGB(44, 62, 80))
+  const lightThemeColors = generateThemeColors(themeLightColor)
+  const darkThemeColors = generateThemeColors(new RGB(44, 62, 80))
+  extendedTheme.mellow.light.themeColors = lightThemeColors
+  extendedTheme.mellow.dark.themeColors = darkThemeColors
 
   const systemPrefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
   const [displayMode, setDisplayMode] = React.useState<DisplayMode>(getDisplayMode)
@@ -45,10 +47,51 @@ export default function useCustomTheme() {
     localStorage.setItem('mode', newDisplayMode)
   }
 
-  const lightTheme = {}
-  const darkTheme = {}
+  const lightTheme = {
+    common: {
+      black: '#000000',
+      white: '#ffffff'
+    },
+    primary: {
+      main: lightThemeColors[3],
+      light: lightThemeColors[4],
+      dark: lightThemeColors[2],
+      contrastText: '#ffffff'
+    }
+  }
+  const darkTheme = {
+    common: {
+      black: '#000000',
+      white: '#ffffff'
+    },
+    primary: {
+      main: darkThemeColors[3],
+      light: darkThemeColors[4],
+      dark: darkThemeColors[2],
+      contrastText: '#ffffff'
+    }
+  }
 
   const modifiedTheme = createTheme({
+    typography:{
+      fontSize: 14,
+      button: {
+        fontWeight: 'bold'
+      }
+    },
+    components:{
+      MuiButton: {
+        defaultProps: {
+          disableElevation: true
+        },
+        styleOverrides: {
+          root: {
+            borderRadius: 4,
+            padding: '6px 8px'
+          }
+        }
+      }
+    },
     palette: {
       mode,
       ...(mode === 'light'

@@ -1,4 +1,3 @@
-import RGB from '@shared/classes/RGB.ts'
 import { Theme } from '@mui/material'
 
 export type DisplayMode = 'light' | 'dark' | 'system';
@@ -8,10 +7,10 @@ export type ExtendedThemeType = {
         headerHeight: string
         boardDetailHeaderHeight: string
         light: {
-            themeColors: RGB[]
+            themeColors: string[]
         }
         dark: {
-            themeColors: RGB[]
+            themeColors: string[]
         }
     }
 }

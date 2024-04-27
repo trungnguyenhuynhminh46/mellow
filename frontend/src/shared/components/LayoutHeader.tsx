@@ -11,19 +11,17 @@ const LayoutHeader = () => {
     height: theme.mellow.headerHeight,
     background: themeColors[0]
   }} >
-    <Box sx={{
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      padding: '0 1rem',
-      height: '100%'
-    }}>
-      <Button startIcon={<DashboardIcon />} sx={{
-        color: 'white',
-        '&:hover': {
-          color: 'white'
-        }
-      }}>
+    <Box
+      display={'flex'}
+      alignItems={'center'}
+      justifyContent={'space-between'}
+      padding={'0 1rem'}
+      height={'100%'}
+    >
+      <Button
+        variant={'contained'}
+        color={'primary'}
+        startIcon={<DashboardIcon />}>
         Dashboard
       </Button>
       <Box sx={{

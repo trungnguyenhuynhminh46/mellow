@@ -71,7 +71,8 @@ export const generateDifferentShadeOfColor = (color: RGB, numberOfShades: number
   return shades
 }
 
-export const generateThemeColors = (themeColor: RGB | string): RGB[] => {
+export const generateThemeColors = (themeColor: RGB | string): string[] => {
   const color: RGB = typeof themeColor === 'string' ? generateAverageColor(themeColor) : themeColor
-  return generateDifferentShadeOfColor(color, 10)
+  const colors = generateDifferentShadeOfColor(color, 10)
+  return colors.map(color => color.toString())
 }
