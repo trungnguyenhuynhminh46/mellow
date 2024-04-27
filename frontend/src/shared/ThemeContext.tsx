@@ -1,6 +1,7 @@
 import React, { FC, PropsWithChildren, useContext } from 'react'
 import { createTheme, Theme } from '@mui/material'
-import useCustomTheme, { DisplayMode } from './hooks/useCustomTheme.tsx'
+import useCustomTheme from './hooks/useCustomTheme.tsx'
+import { DisplayMode } from '@shared/types/theme.ts'
 
 type ThemeContextType = {
     displayMode: DisplayMode

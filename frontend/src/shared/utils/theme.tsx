@@ -1,4 +1,4 @@
-import { CustomThemeType } from '@shared/hooks/useCustomTheme.tsx'
+import { CustomThemeType } from '@shared/types/theme.ts'
 
 export const getThemeColors = (theme: CustomThemeType): string[] => {
   const themeMode = theme.palette.mode

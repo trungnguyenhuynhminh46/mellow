@@ -1,5 +1,5 @@
 import { Box, useTheme } from '@mui/material'
-import { CustomThemeType } from '@shared/hooks/useCustomTheme.tsx'
+import { CustomThemeType } from '@shared/types/theme.ts'
 import { getThemeColors } from '@shared/utils/theme.tsx'
 
 const BoardDetailHeader = () => {

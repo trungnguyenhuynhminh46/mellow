@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom'
 import { Container } from '@mui/material'
 import LayoutHeader from '@components/LayoutHeader.tsx'
-import BoardDetailHeader from '@pages/board-detail/components/BoardDetailHeader.tsx'
-import BoardDetailContent from '@pages/board-detail/components/BoardDetailContent.tsx'
+import BoardDetailHeader from '@pages/board/components/BoardDetailHeader.tsx'
+import BoardDetailContent from '@pages/board/components/BoardDetailContent.tsx'
 
 export const Page = () => {
   const { id } = useParams()

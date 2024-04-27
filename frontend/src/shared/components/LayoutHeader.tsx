@@ -1,7 +1,7 @@
 import { Box, Button, useTheme } from '@mui/material'
-import { CustomThemeType } from '@shared/hooks/useCustomTheme.tsx'
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import { getThemeColors } from '@shared/utils/theme.tsx'
+import { CustomThemeType } from '@shared/types/theme.ts'
 
 const LayoutHeader = () => {
   const theme = useTheme<CustomThemeType>()

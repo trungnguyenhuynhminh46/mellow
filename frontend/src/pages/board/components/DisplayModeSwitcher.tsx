@@ -1,4 +1,3 @@
-import { DisplayMode } from '@shared/hooks/useCustomTheme.tsx'
 import CustomSelect from '@components/CustomSelect.tsx'
 import { SelectChangeEvent } from '@mui/material'
 import { useThemeContext } from '@shared/ThemeContext.tsx'
@@ -6,6 +5,7 @@ import LightModeIcon from '@mui/icons-material/LightMode'
 import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness'
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined'
 import { ReactElement } from 'react'
+import { DisplayMode } from '@shared/types/theme.ts'
 
 const DisplayModeSwitcher = () => {
   const { displayMode, changeThemeMode } = useThemeContext()
