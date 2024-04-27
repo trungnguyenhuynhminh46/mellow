@@ -1,11 +1,13 @@
 import { Box, useTheme } from '@mui/material'
 import { CustomThemeType } from '@shared/hooks/useCustomTheme.tsx'
+import { getThemeColors } from '@shared/utils/theme.tsx'
 
 const BoardDetailHeader = () => {
   const theme = useTheme<CustomThemeType>()
+  const themeColors = getThemeColors(theme)
   return <Box sx={{
     height: theme.mellow.boardDetailHeaderHeight,
-    background: 'rgba(38,98,139,0.5)'
+    background: themeColors[2]
   }}>
   </Box>
 }

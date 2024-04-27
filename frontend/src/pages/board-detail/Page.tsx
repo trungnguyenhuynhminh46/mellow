@@ -8,8 +8,7 @@ export const Page = () => {
   const { id } = useParams()
   console.log(id)
   return <Container maxWidth={false} disableGutters={true} sx={{
-    height: '100vh',
-    background: '#45abef'
+    height: '100vh'
   }}>
     <LayoutHeader />
     <BoardDetailHeader />
