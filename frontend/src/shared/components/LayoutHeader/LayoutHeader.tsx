@@ -1,7 +1,7 @@
-import { Box, Button, useTheme } from '@mui/material'
-import DashboardIcon from '@mui/icons-material/Dashboard'
+import { Box, useTheme } from '@mui/material'
 import { getThemeColors } from '@shared/utils/theme.tsx'
 import { CustomThemeType } from '@shared/types/theme.ts'
+import DashboardButton from '@components/LayoutHeader/DashboardButton.tsx'
 
 const LayoutHeader = () => {
   const theme = useTheme<CustomThemeType>()
@@ -18,12 +18,7 @@ const LayoutHeader = () => {
       padding={'0 1rem'}
       height={'100%'}
     >
-      <Button
-        variant={'contained'}
-        color={'primary'}
-        startIcon={<DashboardIcon />}>
-        Dashboard
-      </Button>
+      <DashboardButton />
       <Box sx={{
         display: 'flex',
         alignItems: 'center'

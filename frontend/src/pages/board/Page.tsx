@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom'
 import { Container } from '@mui/material'
-import LayoutHeader from '@components/LayoutHeader.tsx'
+import LayoutHeader from '@components/LayoutHeader'
 import BoardDetailHeader from '@pages/board/components/BoardDetailHeader.tsx'
 import BoardDetailContent from '@pages/board/components/BoardDetailContent.tsx'
 
