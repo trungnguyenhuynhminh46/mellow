@@ -2,6 +2,9 @@ import { Box, useTheme } from '@mui/material'
 import { getThemeColors } from '@shared/utils/theme.tsx'
 import { CustomThemeType } from '@shared/types/theme.ts'
 import DashboardButton from '@components/LayoutHeader/DashboardButton.tsx'
+import SearchBar from '@components/SearchBar.tsx'
+import NotificationsButton from '@components/LayoutHeader/NotificationsButton.tsx'
+import ProfileButton from '@components/LayoutHeader/ProfileButton.tsx'
 
 const LayoutHeader = () => {
   const theme = useTheme<CustomThemeType>()
@@ -18,11 +21,19 @@ const LayoutHeader = () => {
       padding={'0 1rem'}
       height={'100%'}
     >
-      <DashboardButton />
+      <Box
+        display={'flex'}
+        alignItems={'center'}
+      >
+        <DashboardButton />
+      </Box>
       <Box sx={{
         display: 'flex',
         alignItems: 'center'
       }}>
+        <SearchBar />
+        <NotificationsButton />
+        <ProfileButton />
       </Box>
     </Box>
   </Box>
