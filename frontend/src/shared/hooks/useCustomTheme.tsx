@@ -82,13 +82,19 @@ export default function useCustomTheme() {
     components:{
       MuiButton: {
         defaultProps: {
-          disableElevation: true
+          disableElevation: true,
+          disableRipple: true
         },
         styleOverrides: {
           root: {
             borderRadius: 4,
             padding: '6px 8px'
           }
+        }
+      },
+      MuiIconButton: {
+        defaultProps: {
+          disableRipple: true
         }
       }
     },
