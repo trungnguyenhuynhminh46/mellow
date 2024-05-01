@@ -5,6 +5,7 @@ import DashboardButton from '@components/LayoutHeader/DashboardButton.tsx'
 import SearchSection from '@components/SearchSection.tsx'
 import NotificationsButton from '@components/LayoutHeader/NotificationsButton.tsx'
 import ProfileButton from '@components/LayoutHeader/ProfileButton.tsx'
+import CreateButton from '@components/LayoutHeader/CreateButton.tsx'
 
 const LayoutHeader = () => {
   const theme = useTheme<CustomThemeType>()
@@ -15,21 +16,25 @@ const LayoutHeader = () => {
     background: themeColors[0]
   }} >
     <Box
-      display={'flex'}
-      alignItems={'center'}
-      justifyContent={'space-between'}
-      padding={'0 1rem'}
-      height={'100%'}
+      position='relative'
+      display='flex'
+      alignItems='center'
+      justifyContent='space-between'
+      padding='6px 1rem'
+      height='100%'
     >
       <Box
         display={'flex'}
         alignItems={'center'}
       >
         <DashboardButton />
+        <CreateButton />
       </Box>
       <Box sx={{
+        position: 'relative',
         display: 'flex',
-        alignItems: 'center'
+        alignItems: 'center',
+        height: '32px'
       }}>
         <SearchSection />
         <NotificationsButton />

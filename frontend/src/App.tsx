@@ -1,5 +1,5 @@
-import { ThemeProvider } from '@mui/material'
 import CssBaseline from '@mui/material/CssBaseline'
+import { ThemeProvider } from '@mui/material'
 import { useThemeContext } from '@shared/ThemeContext.tsx'
 import AppRoutes from '@/AppRoutes.tsx'
 

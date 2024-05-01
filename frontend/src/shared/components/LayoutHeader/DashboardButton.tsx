@@ -12,8 +12,8 @@ const DashboardButton = (props: ButtonProps) => {
       flex:1,
       fontFamily: '"Jersey 15", sans-serif',
       fontSize: '1.5rem',
-      height: '40px',
-      minWidth: '110px',
+      height: '32px',
+      minWidth: '100px',
       '.MuiButton-startIcon': {
         marginRight: theme.spacing(0.5)
       }

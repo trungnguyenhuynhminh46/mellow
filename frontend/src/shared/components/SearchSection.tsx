@@ -20,7 +20,7 @@ const Search = styled('div')(({ theme }) => ({
 }))
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
+  padding: theme.spacing(0, 1),
   height: '100%',
   position: 'absolute',
   pointerEvents: 'none',
@@ -33,9 +33,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
   width: '100%',
   '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    padding: theme.spacing(0.5, 0.5, 0.5, 0),
+    paddingLeft: `calc(1em + ${theme.spacing(3)})`,
     transition: theme.transitions.create('width'),
     [theme.breakpoints.up('sm')]: {
       width: '12ch',
@@ -52,13 +51,15 @@ const SearchBar = () => {
     <Search>
       <SearchIconWrapper>
         <SearchIcon sx={{
-          color: theme.palette.common.white
+          color: theme.palette.common.white,
+          width: 20
         }}/>
       </SearchIconWrapper>
       <StyledInputBase
         placeholder="Search…"
         inputProps={{ 'aria-label': 'search' }}
         sx={{
+          fontSize:'14px',
           color: theme.palette.common.white,
           '::placeholder': {
             color: theme.palette.common.white
@@ -72,7 +73,7 @@ const SearchBar = () => {
 const SearchButton = () => {
   const theme = useTheme<CustomThemeType>()
   return (
-    <IconButton aria-label="delete" size="medium" sx={{
+    <IconButton aria-label="delete" size="small" sx={{
       marginLeft: theme.spacing(1),
       color: theme.palette.common.white,
       '&:hover': {
@@ -86,8 +87,8 @@ const SearchButton = () => {
 
 const SearchSection = () => {
   const theme = useTheme<CustomThemeType>()
-  const onlySmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
-  return onlySmallScreen ? <SearchButton /> : <SearchBar />
+  const downSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
+  return downSmallScreen ? <SearchButton /> : <SearchBar />
 }
 
 export default SearchSection

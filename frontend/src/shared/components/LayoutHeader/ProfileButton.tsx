@@ -8,7 +8,10 @@ const ProfileButton = () => {
     marginLeft: theme.spacing(0.5),
     color: theme.palette.common.white
   }}>
-    <Avatar alt="Ảnh con chó" src={avatar} />
+    <Avatar alt="Ảnh con chó" src={avatar} sx={{
+      width: 28,
+      height: 28
+    }}/>
   </IconButton>
 }
 

@@ -5,7 +5,7 @@ import { alpha } from '@mui/material/styles'
 const NotificationsButton = () => {
   const theme = useTheme<CustomThemeType>()
   return (
-    <IconButton aria-label="delete" size="medium" sx={{
+    <IconButton aria-label="delete" size="small" sx={{
       marginLeft: theme.spacing(1),
       color: theme.palette.common.white,
       '&:hover': {
