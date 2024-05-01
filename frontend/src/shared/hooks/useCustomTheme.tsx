@@ -6,8 +6,8 @@ import { DisplayMode, ExtendedThemeType } from '@shared/types/theme.ts'
 
 const extendedTheme: ExtendedThemeType = {
   mellow: {
-    headerHeight: '52px',
-    boardDetailHeaderHeight: '60px',
+    headerHeight: '44px',
+    boardDetailHeaderHeight: '52px',
     light: {
       themeColors: []
     },
@@ -57,6 +57,12 @@ export default function useCustomTheme() {
       light: lightThemeColors[4],
       dark: lightThemeColors[2],
       contrastText: '#ffffff'
+    },
+    secondary: {
+      main: 'rgba(255,255,255,0.15)',
+      light: 'rgba(255,255,255,0.1)',
+      dark: 'rgba(255,255,255,0.25)',
+      contrastText: '#ffffff'
     }
   }
   const darkTheme = {
@@ -68,6 +74,12 @@ export default function useCustomTheme() {
       main: darkThemeColors[3],
       light: darkThemeColors[4],
       dark: darkThemeColors[2],
+      contrastText: '#ffffff'
+    },
+    secondary: {
+      main: 'rgba(255,255,255,0.15)',
+      light: 'rgba(255,255,255,0.1)',
+      dark: 'rgba(255,255,255,0.25)',
       contrastText: '#ffffff'
     }
   }
