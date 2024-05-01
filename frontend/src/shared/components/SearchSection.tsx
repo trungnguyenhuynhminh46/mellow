@@ -1,7 +1,7 @@
 import { styled, alpha } from '@mui/material/styles'
 import InputBase from '@mui/material/InputBase'
 import SearchIcon from '@mui/icons-material/Search'
-import { useTheme } from '@mui/material'
+import { IconButton, useMediaQuery, useTheme } from '@mui/material'
 import { CustomThemeType } from '@shared/types/theme.ts'
 
 const Search = styled('div')(({ theme }) => ({
@@ -46,7 +46,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   }
 }))
 
-export default function SearchBar() {
+const SearchBar = () => {
   const theme = useTheme<CustomThemeType>()
   return (
     <Search>
@@ -68,3 +68,26 @@ export default function SearchBar() {
     </Search>
   )
 }
+
+const SearchButton = () => {
+  const theme = useTheme<CustomThemeType>()
+  return (
+    <IconButton aria-label="delete" size="medium" sx={{
+      marginLeft: theme.spacing(1),
+      color: theme.palette.common.white,
+      '&:hover': {
+        background: alpha(theme.palette.common.white, 0.1)
+      }
+    }}>
+      <SearchIcon />
+    </IconButton>
+  )
+}
+
+const SearchSection = () => {
+  const theme = useTheme<CustomThemeType>()
+  const onlySmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
+  return onlySmallScreen ? <SearchButton /> : <SearchBar />
+}
+
+export default SearchSection

@@ -2,7 +2,7 @@ import { Box, useTheme } from '@mui/material'
 import { getThemeColors } from '@shared/utils/theme.tsx'
 import { CustomThemeType } from '@shared/types/theme.ts'
 import DashboardButton from '@components/LayoutHeader/DashboardButton.tsx'
-import SearchBar from '@components/SearchBar.tsx'
+import SearchSection from '@components/SearchSection.tsx'
 import NotificationsButton from '@components/LayoutHeader/NotificationsButton.tsx'
 import ProfileButton from '@components/LayoutHeader/ProfileButton.tsx'
 
@@ -31,7 +31,7 @@ const LayoutHeader = () => {
         display: 'flex',
         alignItems: 'center'
       }}>
-        <SearchBar />
+        <SearchSection />
         <NotificationsButton />
         <ProfileButton />
       </Box>
