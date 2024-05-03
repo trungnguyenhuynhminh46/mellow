@@ -6,6 +6,7 @@ import SearchSection from '@components/SearchSection.tsx'
 import NotificationsButton from '@components/LayoutHeader/NotificationsButton.tsx'
 import ProfileButton from '@components/LayoutHeader/ProfileButton.tsx'
 import CreateButton from '@components/LayoutHeader/CreateButton.tsx'
+import DropdownButton from '@components/DropdownContainer'
 
 const LayoutHeader = () => {
   const theme = useTheme<CustomThemeType>()
@@ -28,6 +29,10 @@ const LayoutHeader = () => {
         alignItems={'center'}
       >
         <DashboardButton />
+        <DropdownButton labelText={'Workspaces'} />
+        <DropdownButton labelText={'Recent'} />
+        <DropdownButton labelText={'Starred'} />
+        <DropdownButton labelText={'Templates'} />
         <CreateButton />
       </Box>
       <Box sx={{
