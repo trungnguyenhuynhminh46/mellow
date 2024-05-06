@@ -30,9 +30,9 @@ const LayoutHeader = () => {
       >
         <DashboardButton />
         <DropdownButton labelText={'Workspaces'} />
-        <DropdownButton labelText={'Recent'} />
-        <DropdownButton labelText={'Starred'} />
-        <DropdownButton labelText={'Templates'} />
+        {/*<DropdownButton labelText={'Recent'} />*/}
+        {/*<DropdownButton labelText={'Starred'} />*/}
+        {/*<DropdownButton labelText={'Templates'} />*/}
         <CreateButton />
       </Box>
       <Box sx={{

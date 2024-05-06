@@ -1,6 +1,7 @@
-import { ReactNode, useState } from 'react'
+import { ReactNode, useRef, useState } from 'react'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import { alpha, styled } from '@mui/material/styles'
+import useOnClickOutside from '@shared/hooks/useOnClickOutside.tsx'
 
 type Props = {
     labelText: string,
@@ -51,11 +52,18 @@ const StyledOptionsContainer = styled('div')(({ theme }) => ({
 }))
 
 const DropdownButton = ({ labelText, children }: Props) => {
+  const wrapperRef = useRef(null)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const handleDropdownButtonClick = () => {
     setIsDropdownOpen(!isDropdownOpen)
   }
-  return <StyledDropdownButtonWrapper>
+  const handleClickOutside = (event: Event) => {
+    event.preventDefault()
+    setIsDropdownOpen(false)
+  }
+  useOnClickOutside(wrapperRef, handleClickOutside)
+
+  return <StyledDropdownButtonWrapper ref={wrapperRef}>
     <StyledDropdownButton isActive={isDropdownOpen} onClick={handleDropdownButtonClick}>
       {labelText}
       <KeyboardArrowDownIcon />
