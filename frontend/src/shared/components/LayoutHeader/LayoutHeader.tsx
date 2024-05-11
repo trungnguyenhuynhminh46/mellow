@@ -7,10 +7,15 @@ import NotificationsButton from '@components/LayoutHeader/NotificationsButton.ts
 import ProfileButton from '@components/LayoutHeader/ProfileButton.tsx'
 import CreateButton from '@components/LayoutHeader/CreateButton.tsx'
 import DropdownButton from '@components/DropdownContainer'
+import { data } from '@assets/temp/data/LayoutHeaderData.ts'
+import WorkspaceMenu from '@components/LayoutHeader/WorkspaceMenu.tsx'
 
 const LayoutHeader = () => {
   const theme = useTheme<CustomThemeType>()
   const themeColors = getThemeColors(theme)
+  //// Get header menu data
+  const { workspaces, recentBoards, starredBoards, publicTemplates } = data
+  //// End get header menu data
 
   return <Box sx={{
     height: theme.mellow.headerHeight,
@@ -29,10 +34,12 @@ const LayoutHeader = () => {
         alignItems={'center'}
       >
         <DashboardButton />
-        <DropdownButton labelText={'Workspaces'} />
-        {/*<DropdownButton labelText={'Recent'} />*/}
-        {/*<DropdownButton labelText={'Starred'} />*/}
-        {/*<DropdownButton labelText={'Templates'} />*/}
+        <DropdownButton labelText={'Workspaces'}>
+          <WorkspaceMenu workspaces={workspaces} />
+        </DropdownButton>
+        <DropdownButton labelText={'Recent'} />
+        <DropdownButton labelText={'Starred'} />
+        <DropdownButton labelText={'Templates'} />
         <CreateButton />
       </Box>
       <Box sx={{

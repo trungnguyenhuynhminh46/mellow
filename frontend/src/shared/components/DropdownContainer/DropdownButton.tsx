@@ -41,8 +41,8 @@ const StyledDropdownButton = styled('div')<StyledDropdownButtonProps>(({ theme, 
 const StyledOptionsContainer = styled('div')(({ theme }) => ({
   position: 'absolute',
   left:  theme.spacing(1),
-  top: 0,
-  transform: `translateY(calc(100% + ${theme.spacing(3)}))`,
+  bottom: 0,
+  transform: `translateY(calc(100% + ${theme.spacing(0.5)}))`,
 
   minWidth: '200px',
   maxWidth: '300px',
@@ -57,8 +57,7 @@ const DropdownButton = ({ labelText, children }: Props) => {
   const handleDropdownButtonClick = () => {
     setIsDropdownOpen(!isDropdownOpen)
   }
-  const handleClickOutside = (event: Event) => {
-    event.preventDefault()
+  const handleClickOutside = () => {
     setIsDropdownOpen(false)
   }
   useOnClickOutside(wrapperRef, handleClickOutside)

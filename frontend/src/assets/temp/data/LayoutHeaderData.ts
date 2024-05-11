@@ -1,25 +1,22 @@
-type WorkspaceOnHeaderType = {
+export type WorkspaceOnHeaderType = {
     id: string;
     name: string;
-    url: string;
     logo: string;
 };
 
-type BoardOnHeaderType = {
+export type BoardOnHeaderType = {
     id: string;
     title: string;
     isTemplate: boolean;
     workspaceName: string;
-    url: string;
 };
 
-type TemplateOnHeaderType = {
+export type TemplateOnHeaderType = {
     id: string;
     title: string;
-    url: string;
 }
 
-type Header = {
+export type Header = {
         workspaces: WorkspaceOnHeaderType[];
         recentBoards: BoardOnHeaderType[];
         starredBoards: BoardOnHeaderType[];
@@ -30,8 +27,17 @@ export const data: Header = {
     {
       id: '1',
       name: 'Workspace 1',
-      url: 'working_space.com',
-      logo: ''
+      logo: 'https://picsum.photos/200/300'
+    },
+    {
+      id: '2',
+      name: 'Workspace 2',
+      logo: 'https://picsum.photos/200/300'
+    },
+    {
+      id: '3',
+      name: 'Workspace 3',
+      logo: 'https://picsum.photos/200/300'
     }
   ],
   recentBoards: [
@@ -39,8 +45,7 @@ export const data: Header = {
       id: '1',
       title: 'Board 1',
       isTemplate:  false,
-      workspaceName: 'Workspace 1',
-      url: 'recent_board.com'
+      workspaceName: 'Workspace 1'
     }
   ],
   starredBoards: [
@@ -48,15 +53,13 @@ export const data: Header = {
       id: '1',
       title: 'Board 1',
       isTemplate:  false,
-      workspaceName: 'Workspace 1',
-      url: 'starred_board.com'
+      workspaceName: 'Workspace 1'
     }
   ],
   publicTemplates: [
     {
       id: '1',
-      title: 'Template 1',
-      url: 'public_template.com'
+      title: 'Template 1'
     }
   ]
 }
