@@ -22,12 +22,20 @@ const WorkspaceItem = ({ workspace }: WorkspaceItemProps) => {
   const to = workspace.id ? `/workspace/${workspace.id}` : undefined
   return (
     <StyledWorkspaceLink to={to}>
-      <Avatar src={workspace.logo} alt={workspace.name} width={32} height={32} sx={(theme) => (
+      <Avatar src={workspace.logo} alt={workspace.name} sx={(theme) => (
         {
-          borderRadius: theme.spacing(0.5)
+          borderRadius: theme.spacing(0.5),
+          width: '40px',
+          height: '32px'
         }
       )} />
-      <Typography variant='span' color='textPrimary' fontSize={14} fontWeight={600}>
+      <Typography
+        variant='span'
+        color='textPrimary'
+        fontSize={14}
+        fontWeight={600}
+        maxWidth={120}
+      >
         {workspace.name}
       </Typography>
     </StyledWorkspaceLink>
@@ -53,7 +61,13 @@ const WorkspaceMenu = ({ workspaces }: Props) => {
   const theme = useTheme<CustomThemeType>()
   return (
     <StyledWorkspaceMenuWrapper>
-      <Typography variant='span' color={theme.palette.grey[700]} fontSize={12} fontWeight={600} margin={theme.spacing(0.5, 1, 0)}>
+      <Typography
+        variant='span'
+        color={theme.palette.grey[700]}
+        fontSize={12}
+        fontWeight={600}
+        margin={theme.spacing(0.5, 1, 0)}
+      >
                 Your Workspaces
       </Typography>
       {workspaces.map((workspace) => (

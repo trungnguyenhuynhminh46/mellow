@@ -108,6 +108,15 @@ export default function useCustomTheme() {
         defaultProps: {
           disableRipple: true
         }
+      },
+      MuiTypography: {
+        styleOverrides:{
+          root: {
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden'
+          }
+        }
       }
     },
     palette: {

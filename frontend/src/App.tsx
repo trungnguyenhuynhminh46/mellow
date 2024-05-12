@@ -11,7 +11,7 @@ function App() {
       <CssBaseline/>
       <GlobalStyles styles={{
         body: {
-          'userSelect': 'none'
+          userSelect: 'none'
         }
       }} />
       <AppRoutes />
