@@ -4,43 +4,20 @@ import { styled } from '@mui/material/styles'
 import { Avatar, Typography, useTheme } from '@mui/material'
 import { CustomThemeType } from '@shared/types/theme.ts'
 
-type WorkspaceItemProps = {
-    workspace: WorkspaceOnHeaderType
-}
-
 type Props = {
     workspaces: WorkspaceOnHeaderType[]
+}
+
+type WorkspaceItemProps = {
+    workspace: WorkspaceOnHeaderType
 }
 
 const StyledWorkspaceMenuWrapper = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
-  gap: theme.spacing(1)
+  gap: theme.spacing(1),
+  maxWidth: 300
 }))
-
-const WorkspaceItem = ({ workspace }: WorkspaceItemProps) => {
-  const to = workspace.id ? `/workspace/${workspace.id}` : undefined
-  return (
-    <StyledWorkspaceLink to={to}>
-      <Avatar src={workspace.logo} alt={workspace.name} sx={(theme) => (
-        {
-          borderRadius: theme.spacing(0.5),
-          width: '40px',
-          height: '32px'
-        }
-      )} />
-      <Typography
-        variant='span'
-        color='textPrimary'
-        fontSize={14}
-        fontWeight={600}
-        maxWidth={120}
-      >
-        {workspace.name}
-      </Typography>
-    </StyledWorkspaceLink>
-  )
-}
 
 const StyledWorkspaceLink = styled(Link)(({ theme }) => ({
   display: 'flex',
@@ -57,12 +34,33 @@ const StyledWorkspaceLink = styled(Link)(({ theme }) => ({
   }
 }))
 
+const WorkspaceItem = ({ workspace }: WorkspaceItemProps) => {
+  const to = workspace.id ? `/workspace/${workspace.id}` : '/'
+  return (
+    <StyledWorkspaceLink to={to}>
+      <Avatar src={workspace.logo} alt={workspace.name} sx={(theme) => (
+        {
+          borderRadius: theme.spacing(0.5),
+          width: '40px',
+          height: '32px'
+        }
+      )} />
+      <Typography
+        color='textPrimary'
+        fontSize={14}
+        fontWeight={600}
+      >
+        {workspace.name}
+      </Typography>
+    </StyledWorkspaceLink>
+  )
+}
+
 const WorkspaceMenu = ({ workspaces }: Props) => {
   const theme = useTheme<CustomThemeType>()
   return (
     <StyledWorkspaceMenuWrapper>
       <Typography
-        variant='span'
         color={theme.palette.grey[700]}
         fontSize={12}
         fontWeight={600}

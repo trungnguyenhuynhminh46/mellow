@@ -9,12 +9,13 @@ import CreateButton from '@components/LayoutHeader/CreateButton.tsx'
 import DropdownButton from '@components/DropdownContainer'
 import { data } from '@assets/temp/data/LayoutHeaderData.ts'
 import WorkspaceMenu from '@components/LayoutHeader/WorkspaceMenu.tsx'
+import RecentMenu from '@components/LayoutHeader/RecentMenu.tsx'
 
 const LayoutHeader = () => {
   const theme = useTheme<CustomThemeType>()
   const themeColors = getThemeColors(theme)
   //// Get header menu data
-  const { workspaces, recentBoards, starredBoards, publicTemplates } = data
+  const { workspaces, recentBoards } = data
   //// End get header menu data
 
   return <Box sx={{
@@ -37,7 +38,9 @@ const LayoutHeader = () => {
         <DropdownButton labelText={'Workspaces'}>
           <WorkspaceMenu workspaces={workspaces} />
         </DropdownButton>
-        <DropdownButton labelText={'Recent'} />
+        <DropdownButton labelText={'Recent'} >
+          <RecentMenu recentBoards={recentBoards} />
+        </DropdownButton>
         <DropdownButton labelText={'Starred'} />
         <DropdownButton labelText={'Templates'} />
         <CreateButton />

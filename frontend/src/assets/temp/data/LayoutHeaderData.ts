@@ -7,6 +7,7 @@ export type WorkspaceOnHeaderType = {
 export type BoardOnHeaderType = {
     id: string;
     title: string;
+    logo: string;
     isTemplate: boolean;
     workspaceName: string;
 };
@@ -14,6 +15,7 @@ export type BoardOnHeaderType = {
 export type TemplateOnHeaderType = {
     id: string;
     title: string;
+    logo: string;
 }
 
 export type Header = {
@@ -26,7 +28,7 @@ export const data: Header = {
   workspaces: [
     {
       id: '1',
-      name: 'Workspace 1',
+      name: 'Workspace 1  Workspace 1 Workspace 1 Workspace 1',
       logo: 'https://picsum.photos/200/300'
     },
     {
@@ -43,15 +45,31 @@ export const data: Header = {
   recentBoards: [
     {
       id: '1',
-      title: 'Board 1',
+      title: 'Board 1 Board 1 Board 1 Board 1 Board 1 Board 1',
+      logo: 'https://picsum.photos/200/300',
       isTemplate:  false,
       workspaceName: 'Workspace 1'
+    },
+    {
+      id: '2',
+      title: 'Board 2',
+      logo: 'https://picsum.photos/200/300',
+      isTemplate:  false,
+      workspaceName: 'Workspace 2'
+    },
+    {
+      id: '3',
+      title: 'Board 3',
+      logo: 'https://picsum.photos/200/300',
+      isTemplate:  false,
+      workspaceName: 'Workspace 3'
     }
   ],
   starredBoards: [
     {
       id: '1',
       title: 'Board 1',
+      logo: 'https://picsum.photos/200/300',
       isTemplate:  false,
       workspaceName: 'Workspace 1'
     }
@@ -59,7 +77,8 @@ export const data: Header = {
   publicTemplates: [
     {
       id: '1',
-      title: 'Template 1'
+      title: 'Template 1',
+      logo: 'https://picsum.photos/200/300'
     }
   ]
 }
